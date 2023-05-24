@@ -1,6 +1,7 @@
 import collections
 from datetime import datetime
 import csv
+import os
 from pep_parse import settings
 
 BASE_DIR = settings.BASE_DIR
@@ -19,8 +20,11 @@ class PepParsePipeline:
         he = [(T, sum(self.statuses.values()))]
         data = [LIST] + list(self.statuses.items()) + he
 
+        if os.path.exists(filename):
+            os.remove(filename)
+        
         with open(filename, mode='w', encoding='utf-8', newline='') as file:
-            writer = csv.writer(file)
+            writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             writer.writerows(data)
 
     def process_item(self, item, spider):
