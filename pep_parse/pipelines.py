@@ -5,7 +5,8 @@ from pep_parse import settings
 
 BASE_DIR = settings.BASE_DIR
 BASE_DIR_1 = f"{BASE_DIR}/results/status_summary_"
-
+LIST = ('Статус', 'Количество')
+T = 'Total'
 
 class PepParsePipeline:
     def open_spider(self, spider):
@@ -13,9 +14,7 @@ class PepParsePipeline:
 
     def close_spider(self, spider):
         filename = f"{BASE_DIR_1}{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv"
-        data = [('Статус', 'Количество')] +
-        list(self.statuses.items()) +
-        [('Total', sum(self.statuses.values()))]
+        data = [LIST] + list(self.statuses.items()) + [(T, sum(self.statuses.values()))]
 
         with open(filename, mode='w', encoding='utf-8', newline='') as file:
             writer = csv.writer(file)
