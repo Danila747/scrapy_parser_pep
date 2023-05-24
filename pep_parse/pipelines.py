@@ -9,14 +9,15 @@ LIST = ('Статус', 'Количество')
 T = 'Total'
 DATEFORM = '%Y-%m-%d_%H-%M-%S'
 
+
 class PepParsePipeline:
     def open_spider(self, spider):
         self.statuses = collections.defaultdict(int)
-        sum = sum(self.statuses.values())
         
     def close_spider(self, spider):
         filename = f"{BASE_DIR_1}{datetime.now().strftime(DATEFORM)}.csv"
-        data = [LIST] + list(self.statuses.items()) + [(T, sum)]
+        he = [(T, sum(self.statuses.values()))]
+        data = [LIST] + list(self.statuses.items()) + he
 
         with open(filename, mode='w', encoding='utf-8', newline='') as file:
             writer = csv.writer(file)
