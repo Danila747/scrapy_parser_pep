@@ -4,6 +4,7 @@ import csv
 from pep_parse import settings
 
 BASE_DIR = settings.BASE_DIR
+BASE_DIR_1 = f"{BASE_DIR}/results/status_summary_"
 
 
 class PepParsePipeline:
@@ -11,8 +12,7 @@ class PepParsePipeline:
         self.statuses = collections.defaultdict(int)
 
     def close_spider(self, spider):
-        filename = f"{BASE_DIR}/results/status_summary_" +
-                   f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv"
+        filename = f"{BASE_DIR_1}{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv"
         data = [('Статус', 'Количество')] +
         list(self.statuses.items()) +
         [('Total', sum(self.statuses.values()))]
