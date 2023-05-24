@@ -12,9 +12,9 @@ DATEFORM = '%Y-%m-%d_%H-%M-%S'
 class PepParsePipeline:
     def open_spider(self, spider):
         self.statuses = collections.defaultdict(int)
-
-    def close_spider(self, spider):
         sum = sum(self.statuses.values())
+        
+    def close_spider(self, spider):
         filename = f"{BASE_DIR_1}{datetime.now().strftime(DATEFORM)}.csv"
         data = [LIST] + list(self.statuses.items()) + [(T, sum)]
 
