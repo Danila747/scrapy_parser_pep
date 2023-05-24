@@ -1,6 +1,6 @@
 from pathlib import Path
 
-BASE_DIR = 'C:\Dev\scrapy_parser_pep\pep_parse\results'
+BASE_DIR = Path(__file__).parent.parent
 PARSER_NAME = 'pep_parse'
 
 SPIDER_MODULE = ['pep_parse.spiders']
