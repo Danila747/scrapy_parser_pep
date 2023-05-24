@@ -1,14 +1,10 @@
 import collections
-from datetime import datetime
-import csv
-import os
-from pep_parse import settings
+from datetime import datetime as dt
+
+from pep_parse import constants as const
+from pep_parse import settings, utils
 
 BASE_DIR = settings.BASE_DIR
-BASE_DIR_1 = f"{BASE_DIR}/results/status_summary_"
-LIST = ('Статус', 'Количество')
-T = 'Total'
-DATEFORM = '%Y-%m-%d_%H-%M-%S'
 
 
 class PepParsePipeline:
@@ -16,16 +12,11 @@ class PepParsePipeline:
         self.statuses = collections.defaultdict(int)
 
     def close_spider(self, spider):
-        filename = f"{BASE_DIR_1}{datetime.now().strftime(DATEFORM)}.csv"
-        he = [(T, sum(self.statuses.values()))]
-        data = [LIST] + list(self.statuses.items()) + he
-
-        if os.path.exists(filename):
-            os.remove(filename)
-        
-        with open(filename, mode='w', encoding='utf-8', newline='') as file:
-            writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            writer.writerows(data)
+        filename = (
+            f'{BASE_DIR}/results/status_summary_'
+            f'{dt.now().strftime(const.STATUS_DT_FORMAT)}.csv'
+        )
+        utils.dict_to_csv(filename, self.statuses, ('Статус', 'Количество'))
 
     def process_item(self, item, spider):
         self.statuses[item['status']] += 1

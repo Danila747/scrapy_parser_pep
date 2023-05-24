@@ -1,9 +1,10 @@
 from pathlib import Path
 
-BASE_DIR = Path(__file__).parent.parent
-ROBOT_NAME = 'pep_parse'
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-SPIDER_MODULE = ['pep_parse.spiders']
+BOT_NAME = 'pep_parse'
+
+SPIDER_MODULES = ['pep_parse.spiders']
 NEWSPIDER_MODULE = 'pep_parse.spiders'
 
 ROBOTSTXT_OBEY = True

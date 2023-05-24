@@ -1,27 +1,23 @@
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-from pep_parse import items
 
-nummero = '//dt[contains(., "PEP")]/following-sibling::dd/text()'
-nammeno = '//*[@id="pep-content"]/h1/text()'
-statutello = '//dt[contains(., "Status")]/following-sibling::dd/text()'
+from pep_parse import constants as const
+from pep_parse import items
 
 
 class PepSpider(CrawlSpider):
     name = 'pep'
-    allowed_domains = ['peps.python.org']
-    start_urls = ['https://peps.python.org/']
+    allowed_domains = const.ALLOWED_DOMAINS_FOR_PEP
+    start_urls = const.START_URLS_FOR_PEP
 
-    rules = (
-        Rule(
-            LinkExtractor(allow=r'pep-\d{4}'),
-            callback='parse_pep'
-        ),
-    )
+    rules = (Rule(
+        LinkExtractor(allow=r'pep-\d{4}'),
+        callback='parse_pep'
+    ),)
 
     def parse_pep(self, response):
         return items.PepParseItem(
-            number=response.xpath(nummero).get().strip(),
-            name=response.xpath(nammeno).get().strip(),
-            status=response.xpath(statutello).get().strip()
+            number=response.xpath(const.PEP_NUMBER_XPATH).get().strip(),
+            name=response.xpath(const.PEP_TITLE_XPATH).get().strip(),
+            status=response.xpath(const.PEP_STATUS_XPATH).get().strip()
         )
