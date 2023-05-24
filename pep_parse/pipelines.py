@@ -11,8 +11,11 @@ class PepParsePipeline:
         self.statuses = collections.defaultdict(int)
 
     def close_spider(self, spider):
-        filename = f"{BASE_DIR}/results/status_summary_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv"
-        data = [('Статус', 'Количество')] + list(self.statuses.items()) + [('Total', sum(self.statuses.values()))]
+        filename = f"{BASE_DIR}/results/status_summary_"
+                   f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv"
+        data = [('Статус', 'Количество')] +
+        list(self.statuses.items()) +
+        [('Total', sum(self.statuses.values()))]
 
         with open(filename, mode='w', encoding='utf-8', newline='') as file:
             writer = csv.writer(file)
@@ -21,4 +24,3 @@ class PepParsePipeline:
     def process_item(self, item, spider):
         self.statuses[item['status']] += 1
         return item
-
