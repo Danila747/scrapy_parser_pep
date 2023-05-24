@@ -11,7 +11,7 @@ class PepParsePipeline:
         self.statuses = collections.defaultdict(int)
 
     def close_spider(self, spider):
-        filename = f"{BASE_DIR}/results/status_summary_"
+        filename = f"{BASE_DIR}/results/status_summary_" +
                    f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv"
         data = [('Статус', 'Количество')] +
         list(self.statuses.items()) +
