@@ -18,12 +18,12 @@ class PepSpider(CrawlSpider):
     def parse_pep(self, response):
         return items.PepParseItem(
             number=response.xpath(
-                                  '//dt[contains(., "PEP")]/following-sibling::dd/text()'
-                                  ).get().strip(),
+                                 '//dt[contains(., "PEP")]/following-sibling::dd/text()'
+                                 ).get().strip(),
             name=response.xpath(
-                                '//*[@id="pep-content"]/h1/text()'
-                                ).get().strip(),
+                               '//*[@id="pep-content"]/h1/text()'
+                               ).get().strip(),
             status=response.xpath(
-                                  '//dt[contains(., "Status")]/following-sibling::dd/text()'
-                                  ).get().strip()
+                                 '//dt[contains(., "Status")]/following-sibling::dd/text()'
+                                 ).get().strip()
         )
