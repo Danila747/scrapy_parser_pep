@@ -6,6 +6,7 @@ nummero = '//dt[contains(., "PEP")]/following-sibling::dd/text()'
 nammeno = '//*[@id="pep-content"]/h1/text()'
 statutello = '//dt[contains(., "Status")]/following-sibling::dd/text()'
 
+
 class PepSpider(CrawlSpider):
     name = 'pep'
     allowed_domains = ['peps.python.org']
