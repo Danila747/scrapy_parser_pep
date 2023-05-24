@@ -1,7 +1,7 @@
 from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent
-PARSER_NAME = 'pep_parse'
+ROBOT_NAME = 'pep_parse'
 
 SPIDER_MODULE = ['pep_parse.spiders']
 NEWSPIDER_MODULE = 'pep_parse.spiders'
