@@ -1,36 +1,11 @@
 # Парсер  Python.org
-Собирает с сайта `python.org` информацию о PEP'ах.
-
-## Технологии
-- Python 3.10
-- Scrapy
-
-## Как пользоваться
-- Скачать проект:
+Собирает с сайта `python.org` информацию
+## Установка и пользование
 ```
-https://github.com/Xewus/scrapy_parser_pep.git
-```
-- Перейти в директорию проекта:
-```
+git clone
 cd scrapy_parser_pep
-```
-- Создать виртуальное окружение:
-```
-python3 -m venv venv
-```
-- Активировать виртуальное окружение:
-```
-. venv/bin/activate
-```
-- Установить зависимости:
-```
+python -m venv venv
+source venv/Scripts/activate
 pip install -r requirements.txt
+scrapy crawl pep
 ```
-Запуск производится командой:
-```
-scrapy crawl pep --nolog
-```
-### Всё готово!
-
-После запуска парсер начнёт со страницы https://peps.python.org/, найдёт на ней ссылки на PEP'ы, перейдёт по ним и соберёт данные об обновлениях PEP'ов.
-Результаты будут сохранены в два файла в формате .csv
