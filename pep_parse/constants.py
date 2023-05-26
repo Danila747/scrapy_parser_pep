@@ -6,9 +6,8 @@ CSV_FIELDS = ['number', 'name', 'status']
 
 
 ALLOWED_DOMAINS_FOR_PEP = 'https://www.python.org/dev/peps/#numerical-index',
-START_URLS_FOR_PEP = [
-                     'https://https://www.python.org/dev/peps/#numerical-index/'
-                     ]
+START_URLS_FOR_PEP = 
+['https://https://www.python.org/dev/peps/#numerical-index/']
 
 
 PEP_NUMBER_XPATH = '//dt[contains(., "PEP")]/following-sibling::dd/text()'
