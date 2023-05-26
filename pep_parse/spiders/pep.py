@@ -8,7 +8,7 @@ from pep_parse import items
 class PepSpider(CrawlSpider):
     name = 'pep'
     allowed_domains = const.ALLOWED_DOMAINS_FOR_PEP
-    start_urls = const.START_URLS_FOR_PEP
+    start_urls = const.URLS_FOR_PEP
 
     rules = (Rule(
         LinkExtractor(allow=r'pep-\d{4}'),
