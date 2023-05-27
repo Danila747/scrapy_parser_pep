@@ -2,7 +2,6 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 
 from pep_parse import constants as const
-from pep_parse import items
 
 
 class PepSpider(CrawlSpider):
