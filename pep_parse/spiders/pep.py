@@ -11,8 +11,7 @@ class PepSpider(CrawlSpider):
 
     rules = (
         Rule(LinkExtractor(css='#numerical-index tbody a'),
-             callback='parse_pep'
-    ),
+             callback='parse_pep'),
     )
 
     def parse_pep(self, response):
@@ -21,6 +20,5 @@ class PepSpider(CrawlSpider):
             'number': int(number.split()[1]),
             'name': name,
             'status': response.css(
-            'dt:contains("Status") + dd abbr::text'
-            ).get(),
+            'dt:contains("Status") + dd abbr::text').get(),
         }
