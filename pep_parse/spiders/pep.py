@@ -10,8 +10,8 @@ class PepSpider(CrawlSpider):
     start_urls = const.START_URLS_FOR_PEP
 
     rules = (
-        Rule(LinkExtractor(css='#numerical-index tbody a'), 
-           callback='parse_pep'
+        Rule(LinkExtractor(css='#numerical-index tbody a'),
+             callback='parse_pep'
         ),
     )
 
@@ -21,6 +21,6 @@ class PepSpider(CrawlSpider):
             'number': int(number.split()[1]),
             'name': name,
             'status': response.css(
-                                 'dt:contains("Status") + dd abbr::text'
+                      'dt:contains("Status") + dd abbr::text'
                       ).get(),
         }
