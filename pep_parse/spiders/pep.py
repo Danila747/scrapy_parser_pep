@@ -11,7 +11,7 @@ class PepSpider(CrawlSpider):
     st_setting = 'dt:contains("Status") + dd abbr::text'
 
     rules = (
-        Rule(LinkExtractor(css='#numerical-index tbody a'),
+        Rule(LinkExtractor(restrict_css='#numerical-index tbody a'),
              callback='parse_pep'),
     )
 
