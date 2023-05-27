@@ -5,9 +5,6 @@ from pep_parse import constants as const
 from pep_parse import items
 
 
-from scrapy.spiders import CrawlSpider, Rule
-from scrapy.linkextractors import LinkExtractor
-
 class PepSpider(CrawlSpider):
     name = 'pep'
     allowed_domains = const.ALLOWED_DOMAINS_FOR_PEP
